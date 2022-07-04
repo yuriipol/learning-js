@@ -591,54 +591,268 @@
 
 ?После объявления класса мы добавили инициализацию экземпляра и вызовы методов в той последовательности, в которой твой код будут проверять тесты. Пожалуйста ничего там не меняй.
 */
-class User {
-  email;
+// class User {
+//   email;
 
-  constructor(email) {
-    this.email = email;
-  }
+//   constructor(email) {
+//     this.email = email;
+//   }
 
-  get email() {
-    return this.email;
-  }
+//   get email() {
+//     return this.email;
+//   }
 
-  set email(newEmail) {
-    this.email = newEmail;
-  }
+//   set email(newEmail) {
+//     this.email = newEmail;
+//   }
+// }
+// class Admin extends User {
+//   // Change code below this line
+//   blacklistedEmails = [];
+//   static AccessLevel = {
+//     BASIC: "basic",
+//     SUPERUSER: "superuser",
+//   };
+
+//   constructor({ email, accessLevel }) {
+//     super(email);
+//     this.accessLevel = accessLevel;
+//   }
+//   blacklist(email) {
+//     this.blacklistedEmails.push(email);
+//   }
+//   isBlacklisted(email) {
+//     if (this.blacklistedEmails.includes(email)) {
+//       return true;
+//     }
+//     return false;
+//   }
+
+//   // Change code above this line
+// }
+
+// const mango = new Admin({
+//   email: "mango@mail.com",
+//   accessLevel: Admin.AccessLevel.SUPERUSER,
+// });
+
+// console.log(mango.email); // "mango@mail.com"
+// console.log(mango.accessLevel); // "superuser"
+// mango.blacklist("poly@mail.com");
+// console.log(mango.blacklistedEmails); // ["poly@mail.com"]
+// console.log(mango.isBlacklisted("mango@mail.com")); // false
+// console.log(mango.isBlacklisted("poly@mail.com")); // true
+
+/* 
+1. Написати ф-ю, яка повертає масив автомобілів з описом певного виробника, та сортує результат в алфавітному
+порядку по назві моделі.
+console.log(getSortModel(cars, 'Ford'));
+
+2. Написати ф-ю, яка повертає масив автомобілів у певній ціновій категорії
+console.log(filterByPrice(cars, 20000, 24000));
+
+3. Написати ф-ю getCarsProducer(cars), яка повертає масив всіх виробників для представлених авто, відсортованих
+за алфавінтим порядком
+*/
+
+const cars = [
+  {
+    make: "Honda",
+    model: "CR-V",
+    type: "suv",
+    amount: 14,
+    price: 24045,
+    onSale: true,
+  },
+  {
+    make: "Honda",
+    model: "Accord",
+    type: "sedan",
+    amount: 2,
+    price: 22455,
+    onSale: true,
+  },
+  {
+    make: "Mazda",
+    model: "Mazda 6",
+    type: "sedan",
+    amount: 8,
+    price: 24195,
+    onSale: false,
+  },
+  {
+    make: "Mazda",
+    model: "CX-9",
+    type: "suv",
+    amount: 7,
+    price: 31520,
+    onSale: true,
+  },
+  {
+    make: "Toyota",
+    model: "4Runner",
+    type: "suv",
+    amount: 19,
+    price: 34210,
+    onSale: false,
+  },
+  {
+    make: "Toyota",
+    model: "Sequoia",
+    type: "suv",
+    amount: 16,
+    price: 45560,
+    onSale: false,
+  },
+  {
+    make: "Toyota",
+    model: "Tacoma",
+    type: "truck",
+    amount: 4,
+    price: 24320,
+    onSale: true,
+  },
+  {
+    make: "Ford",
+    model: "F-150",
+    type: "truck",
+    amount: 11,
+    price: 27110,
+    onSale: true,
+  },
+  {
+    make: "Ford",
+    model: "Fusion",
+    type: "sedan",
+    amount: 13,
+    price: 22120,
+    onSale: true,
+  },
+  {
+    make: "Ford",
+    model: "Explorer",
+    type: "suv",
+    amount: 6,
+    price: 31660,
+    onSale: false,
+  },
+];
+// const getSortModel = function (arr, nameManufacturer) {
+//   const carsArray = arr
+//     .filter((car, index, array) => car.make === nameManufacturer)
+//     .sort((firstCar, secondCar) =>
+//       firstCar.model.localeCompare(secondCar.model)
+//     );
+//   return carsArray;
+// };
+
+// console.log(getSortModel(cars, "Ford"));
+
+// const filterByPrice = (arr, price1, price2) =>
+//   arr.filter((car) => car.price >= price1 && car.price <= price2);
+
+// console.log(filterByPrice(cars, 20000, 24000));
+
+// const getCarsProducer = (cars) =>
+//   cars
+//     .map((car) => car.make)
+//     .sort((firstCar, secondCar) => firstCar.localeCompare(secondCar));
+// console.log(getCarsProducer(cars));
+
+/*
+1. написать функцию, separateName(fullName), которая принимает строку "Фамилия Имя" и возвращает объект
+в котором имя и фамилия являются отдельными свойствами: {firstName: "Имя", lastName: "Фамилия"}
+
+2. Написать функцию createEmployesList(employes), которая принимает список сотрудников "Фамилия Имя" и
+записывает их в массив объектов, который описывает каждого сотрудника, добавляя
+ему уникальный id типа (1, 2, 3, и т.д.)
+
+3. Написать функцию getEmployeeData(id), которая по id выбирает сотрудника из масива сотрудников
+и возвращает объект с данными сотрудника дополнеными информацией о нем из соответствующего ему объекта
+с рабочим отделом, должностью и зарплатой на этой должности в масиве workPosition - типа:
+{
+  id: 1,
+  firstName: "Иван",
+  lastName: "Сапсай",
+  department: "Отдел продаж",
+  position: "Торговый представитель",
+  salary: 10000
 }
-class Admin extends User {
-  // Change code below this line
-  blacklistedEmails = [];
-  static AccessLevel = {
-    BASIC: "basic",
-    SUPERUSER: "superuser",
-  };
+*/
+const listNames = [
+  "Сапсай Иван",
+  "Буракшаева Юлия",
+  "Богословский Артем",
+  "Мельникова Ксения",
+  "Иванов Сергей",
+  "Фурсова Елизавета",
+  "Самбикина Юлия",
+];
 
-  constructor({ email, accessLevel }) {
-    super(email);
-    this.accessLevel = accessLevel;
-  }
-  blacklist(email) {
-    this.blacklistedEmails.push(email);
-  }
-  isBlacklisted(email) {
-    if (this.blacklistedEmails.includes(email)) {
-      return true;
-    }
-    return false;
-  }
+const workPositions = [
+  {
+    id: 1,
+    department: "Отдел продаж",
+    position: "Торговый представитель",
+    salary: 10000,
+  },
+  {
+    id: 2,
+    department: "Отдел аналитики",
+    position: "Аналитик систем",
+    salary: 50000,
+  },
+  {
+    id: 3,
+    department: "Отдел рекламы",
+    position: "Маркетолог",
+    salary: 25000,
+  },
+  {
+    id: 4,
+    department: "Отдел продаж",
+    position: "Супервайзер",
+    salary: 18000,
+  },
+  {
+    id: 5,
+    department: "Отдел рекламы",
+    position: "Мерчендайзер",
+    salary: 10000,
+  },
+  {
+    id: 6,
+    department: "Отдел логистики",
+    position: "Водитель-экспедитор",
+    salary: 15000,
+  },
+  {
+    id: 7,
+    department: "Бухгалтерия",
+    position: "Главный бухгалтер",
+    salary: 20000,
+  },
+];
 
-  // Change code above this line
-}
+const separateName = (fullName) => {
+  const [lastName, firstName] = fullName.split(" ");
+  const obj = { firstName, lastName };
+  return obj;
+};
+console.log(separateName("Yurii Polupan"));
 
-const mango = new Admin({
-  email: "mango@mail.com",
-  accessLevel: Admin.AccessLevel.SUPERUSER,
-});
+const createEmployesList = (employes) => {
+  const object = employes.map((el, idx) => ({
+    id: idx + 1,
+    ...separateName(el),
+  }));
+  return object;
+};
 
-console.log(mango.email); // "mango@mail.com"
-console.log(mango.accessLevel); // "superuser"
-mango.blacklist("poly@mail.com");
-console.log(mango.blacklistedEmails); // ["poly@mail.com"]
-console.log(mango.isBlacklisted("mango@mail.com")); // false
-console.log(mango.isBlacklisted("poly@mail.com")); // true
+console.log(createEmployesList(listNames));
+
+const getEmployeeData = (array, id) => {
+  const Data = array.find((el) => el.id === id);
+  return Data;
+};
+console.log(getEmployeeData(workPositions, 2));

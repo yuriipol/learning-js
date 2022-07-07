@@ -63,15 +63,25 @@
 ? порядкового номера цього елемента.
 */
 const array = Array(16).fill(null);
-const ul = document.querySelector(".js-list");
+const listGallery = document.querySelector(".js-list");
 
-const makeLi = () => {
+const makeLi = (el, idx) => {
   const li = document.createElement("li");
   li.classList.add("item");
   li.textContent = "...";
+  li.dataset.index = idx + 1;
   return li;
 };
 
 const newArray = array.map(makeLi);
 
-ul.append(...newArray);
+listGallery.append(...newArray);
+
+const changeTextArea = (event) => {
+  if (event.target.tagName !== "LI") {
+    return;
+  }
+
+  event.target.textContent = event.target.dataset.index;
+};
+listGallery.addEventListener("click", changeTextArea);

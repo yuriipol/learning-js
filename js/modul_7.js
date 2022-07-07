@@ -39,20 +39,39 @@
 ? Слухач ESC не повинен постійно висіти на window, а кнопка та слухач кліка повинні не діяти при відкритій модалці.
 ? Перевірити це в тілі функції-обробника.
 */
-const popup = document.querySelector(".popup");
-const btnPopup = document.querySelector(".open-popup-btn");
+// const popup = document.querySelector(".popup");
+// const btnPopup = document.querySelector(".open-popup-btn");
 
-btnPopup.addEventListener("click", showMassege);
+// btnPopup.addEventListener("click", showMassege);
 
-function showMassege() {
-  popup.classList.add("popup_open");
-  btnPopup.setAttribute("disabled", "disabled");
-  window.addEventListener("keydown", onEscPressKey);
-}
-function onEscPressKey(event) {
-  if (event.code === "Escape") {
-    popup.classList.remove("popup_open");
-    window.removeEventListener("keydown", onEscPressKey);
-    btnPopup.removeAttribute("disabled");
-  }
-}
+// function showMassege() {
+//   popup.classList.add("popup_open");
+//   btnPopup.setAttribute("disabled", "disabled");
+//   window.addEventListener("keydown", onEscPressKey);
+// }
+// function onEscPressKey(event) {
+//   if (event.code === "Escape") {
+//     popup.classList.remove("popup_open");
+//     window.removeEventListener("keydown", onEscPressKey);
+//     btnPopup.removeAttribute("disabled");
+//   }
+// }
+/*
+? Потрібно створити галерею з 16ти ел-ів розміром 4х4, динамічно
+? додавши в ul.list ел-ти li.item з контентом "...".
+? По кліку на елемент галареї потрібно перезаписати його контент значенням
+? порядкового номера цього елемента.
+*/
+const array = Array(16).fill(null);
+const ul = document.querySelector(".js-list");
+
+const makeLi = () => {
+  const li = document.createElement("li");
+  li.classList.add("item");
+  li.textContent = "...";
+  return li;
+};
+
+const newArray = array.map(makeLi);
+
+ul.append(...newArray);

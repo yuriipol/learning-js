@@ -26,7 +26,8 @@
       .error {
         border: 2px solid red;
       } */
-      button {
+
+      /* button {
         margin: 0 14px;
         padding: 7px 10px;
         border-radius: 5px;
@@ -85,6 +86,27 @@
       .open-popup-btn {
         padding: 12px 24px;
         font-size: 1em;
+      } */
+
+      .list {
+        list-style: none;
+        padding: 10px;
+        width: 630px;
+        margin: 0 auto;
+        background-color: green;
+
+        display: grid;
+
+        grid-template-columns: repeat(4, 150px);
+        grid-template-rows: repeat(4, 150px);
+        grid-gap: 10px;
+      }
+
+      .item {
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     </style>
   </head>
@@ -128,10 +150,13 @@
     />
     <p>Your message: "<b class="text"></b>"</p> -->
 
-    <div class="popup">
+    <!-- <div class="popup">
       <h3>Hello from popup! ❤</h3>
     </div>
-    <button class="open-popup-btn">Open</button>
+    <button class="open-popup-btn">Open</button> -->
+
+    <ul class="list js-list"></ul>
+
     <!-- <script src="./js/main.js"></script> -->
     <!-- <script src="./js/modul_1-01.js"></script> -->
     <!-- <script src="./js/modul_2.js"></script> -->

@@ -62,26 +62,68 @@
 ? По кліку на елемент галареї потрібно перезаписати його контент значенням
 ? порядкового номера цього елемента.
 */
-const array = Array(16).fill(null);
-const listGallery = document.querySelector(".js-list");
+// const array = Array(16).fill(null);
+// const listGallery = document.querySelector(".js-list");
 
-const makeLi = (el, idx) => {
+// const makeLi = (el, idx) => {
+//   const li = document.createElement("li");
+//   li.classList.add("item");
+//   li.textContent = "...";
+//   li.dataset.index = idx + 1;
+//   return li;
+// };
+
+// const newArray = array.map(makeLi);
+
+// listGallery.append(...newArray);
+
+// const changeTextArea = (event) => {
+//   if (event.target.tagName !== "LI") {
+//     return;
+//   }
+
+//   event.target.textContent = event.target.dataset.index;
+// };
+// listGallery.addEventListener("click", changeTextArea);
+
+/*
+? Існує форма з одним інпутом, куди вводиться текст. І є чекбокс.
+   ? Поки чекбокс не натиснутий, кнопка на формі неактивна.
+   ? Натисканням Enter в інпуті або натисканням на кнопку Add, в список нижче, додається todo-нотатка.
+   ? Очистити інпут
+   ? Прибрати перезавантаження, звертатися через форму (elements) та ім'я інпуту
+   ? При натисканні на todo-замітку у списку, вона стає виконаною, тобто. текст закреслюється (клас complete)
+   ? Чекбокс при додаванні нотатки знову має стати не вибраним, а кнопка знову недоступною
+   ? Додати кнопку Видалити на кожну нотатку (+функціонал видалення)
+*/
+const form = document.querySelector("form");
+const input = document.querySelector(".input__text");
+const listToDo = document.querySelector(".todo-list");
+const checkboxConfirm = document.querySelector(".checkbox");
+const btn = document.querySelector("button");
+
+const onFormSubmit = (event) => {
+  event.preventDefault();
+
+  form.reset();
+};
+form.addEventListener("submit", onFormSubmit);
+
+const onInputChange = (event) => {
+  // console.log(event.currentTarget.value);
   const li = document.createElement("li");
-  li.classList.add("item");
-  li.textContent = "...";
-  li.dataset.index = idx + 1;
-  return li;
+  const btnlist = document.createElement("button");
+  btnlist.textContent = "delete";
+  li.textContent = event.currentTarget.value;
+  li.append(btnlist);
+  listToDo.append(li);
+  form.reset();
 };
 
-const newArray = array.map(makeLi);
-
-listGallery.append(...newArray);
-
-const changeTextArea = (event) => {
-  if (event.target.tagName !== "LI") {
-    return;
-  }
-
-  event.target.textContent = event.target.dataset.index;
+const onChangeConfirm = (event) => {
+  // console.log(event.currentTarget.checked);
+  btn.disabled = !event.currentTarget.checked;
 };
-listGallery.addEventListener("click", changeTextArea);
+
+input.addEventListener("change", onInputChange);
+checkboxConfirm.addEventListener("change", onChangeConfirm);

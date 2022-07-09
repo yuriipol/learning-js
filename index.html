@@ -88,7 +88,7 @@
         font-size: 1em;
       } */
 
-      .list {
+      /* .list {
         list-style: none;
         padding: 10px;
         width: 630px;
@@ -107,6 +107,24 @@
         display: flex;
         justify-content: center;
         align-items: center;
+      } */
+
+      form {
+        display: flex;
+      }
+
+      input[type="checkbox"] {
+        margin: 0 10px;
+      }
+
+      .todo-list li {
+        margin: 10px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .complete {
+        text-decoration: line-through;
       }
     </style>
   </head>
@@ -155,7 +173,18 @@
     </div>
     <button class="open-popup-btn">Open</button> -->
 
-    <ul class="list js-list"></ul>
+    <!-- <ul class="list js-list"></ul> -->
+
+    <form>
+      <input name="myTodo" type="text" autocomplete="off" class="input__text" />
+      <button disabled type="submit">Add</button>
+      <label
+        >Confirm <input type="checkbox" name="confirm" class="checkbox"
+      /></label>
+    </form>
+
+    <h4>TO-DO list:</h4>
+    <ol class="todo-list"></ol>
 
     <!-- <script src="./js/main.js"></script> -->
     <!-- <script src="./js/modul_1-01.js"></script> -->

@@ -117,6 +117,18 @@ const onInputChange = (event) => {
   li.textContent = event.currentTarget.value;
   li.append(btnlist);
   listToDo.append(li);
+  btn.disabled = true;
+
+  li.addEventListener("click", onClickLiItem);
+  function onClickLiItem() {
+    // console.log(event.target);
+    li.classList.toggle("complete");
+    btnlist.addEventListener("click", deleteEl);
+
+    function deleteEl() {
+      li.remove();
+    }
+  }
   form.reset();
 };
 
@@ -124,6 +136,5 @@ const onChangeConfirm = (event) => {
   // console.log(event.currentTarget.checked);
   btn.disabled = !event.currentTarget.checked;
 };
-
-input.addEventListener("change", onInputChange);
 checkboxConfirm.addEventListener("change", onChangeConfirm);
+input.addEventListener("change", onInputChange);

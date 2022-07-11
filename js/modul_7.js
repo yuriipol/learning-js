@@ -96,45 +96,78 @@
    ? Чекбокс при додаванні нотатки знову має стати не вибраним, а кнопка знову недоступною
    ? Додати кнопку Видалити на кожну нотатку (+функціонал видалення)
 */
-const form = document.querySelector("form");
-const input = document.querySelector(".input__text");
-const listToDo = document.querySelector(".todo-list");
-const checkboxConfirm = document.querySelector(".checkbox");
-const btn = document.querySelector("button");
+// const form = document.querySelector("form");
+// const input = document.querySelector(".input__text");
+// const listToDo = document.querySelector(".todo-list");
+// const checkboxConfirm = document.querySelector(".checkbox");
+// const btn = document.querySelector("button");
 
-const onFormSubmit = (event) => {
-  event.preventDefault();
+// const onFormSubmit = (event) => {
+//   event.preventDefault();
 
-  form.reset();
-};
-form.addEventListener("submit", onFormSubmit);
+//   form.reset();
+// };
+// form.addEventListener("submit", onFormSubmit);
 
-const onInputChange = (event) => {
-  // console.log(event.currentTarget.value);
-  const li = document.createElement("li");
-  const btnlist = document.createElement("button");
-  btnlist.textContent = "delete";
-  li.textContent = event.currentTarget.value;
-  li.append(btnlist);
-  listToDo.append(li);
-  btn.disabled = true;
+// const onInputChange = (event) => {
+//   // console.log(event.currentTarget.value);
+//   const li = document.createElement("li");
+//   const btnlist = document.createElement("button");
+//   btnlist.textContent = "delete";
+//   li.textContent = event.currentTarget.value;
+//   li.append(btnlist);
+//   listToDo.append(li);
+//   btn.disabled = true;
 
-  li.addEventListener("click", onClickLiItem);
-  function onClickLiItem() {
-    // console.log(event.target);
-    li.classList.toggle("complete");
-    btnlist.addEventListener("click", deleteEl);
+//   li.addEventListener("click", onClickLiItem);
+//   function onClickLiItem() {
+//     // console.log(event.target);
+//     li.classList.toggle("complete");
+//     btnlist.addEventListener("click", deleteEl);
 
-    function deleteEl() {
-      li.remove();
-    }
+//     function deleteEl() {
+//       li.remove();
+//     }
+//   }
+//   form.reset();
+// };
+
+// const onChangeConfirm = (event) => {
+//   // console.log(event.currentTarget.checked);
+//   btn.disabled = !event.currentTarget.checked;
+// };
+// checkboxConfirm.addEventListener("change", onChangeConfirm);
+// input.addEventListener("change", onInputChange);
+/*
+? Є сині прямокутники.
+? 1) При натисканні на прямокутник він повинен змінювати колір з синього на жовтий, з жовтого на синій (клас block_active).
+? 2) При натисканні на прямокутник, він стає жовтим.
+?    При цьому якщо є вже жовтий квадрат, то він стає синім.
+?    Так можна кликати на будь-який квадрат, він стає жовтим, а старий жовтий квадрат назад синім і тд.
+? 3) Внизу таблиці є кнопка "змінити кольори".
+?    При її натисканні всі кольори клітин змінюються на протилежні.
+*/
+const container = document.querySelector(".container");
+const containerElemAll = document.querySelectorAll(".shadow");
+const btnChangeColorAll = document.querySelector(".reverse");
+console.log(containerElemAll);
+container.addEventListener("click", onClickChangeColor);
+
+function onClickChangeColor(event) {
+  if (event.target.tagName !== "DIV") {
+    return;
   }
-  form.reset();
-};
+  containerElemAll.forEach((el) => {
+    if ((el.classList = "block_active")) {
+      el.classList.remove("block_active");
+    }
+  });
+  event.target.classList.toggle("block_active");
+}
 
-const onChangeConfirm = (event) => {
-  // console.log(event.currentTarget.checked);
-  btn.disabled = !event.currentTarget.checked;
-};
-checkboxConfirm.addEventListener("change", onChangeConfirm);
-input.addEventListener("change", onInputChange);
+btnChangeColorAll.addEventListener("click", onClickChangeAllColors);
+function onClickChangeAllColors() {
+  containerElemAll.forEach((el) => {
+    el.classList.toggle("block_active");
+  });
+}

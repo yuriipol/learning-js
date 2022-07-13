@@ -148,26 +148,37 @@
 ?    При її натисканні всі кольори клітин змінюються на протилежні.
 */
 const container = document.querySelector(".container");
-const containerElemAll = document.querySelectorAll(".shadow");
+const containerElemAll = document.querySelectorAll(".js-block");
 const btnChangeColorAll = document.querySelector(".reverse");
-console.log(containerElemAll);
+
 container.addEventListener("click", onClickChangeColor);
 
 function onClickChangeColor(event) {
   if (event.target.tagName !== "DIV") {
     return;
   }
-  containerElemAll.forEach((el) => {
-    if ((el.classList = "block_active")) {
-      el.classList.remove("block_active");
-    }
-  });
-  event.target.classList.toggle("block_active");
+
+  const activeBlock = container.querySelector(".block_active");
+  console.log("~ activeBlock", activeBlock);
+  if (activeBlock) {
+    activeBlock.classList.remove("block_active");
+  }
+
+  event.target.classList.add("block_active");
 }
 
 btnChangeColorAll.addEventListener("click", onClickChangeAllColors);
 function onClickChangeAllColors() {
-  containerElemAll.forEach((el) => {
-    el.classList.toggle("block_active");
+  const active = [...containerElemAll].filter((el) =>
+    el.classList.contains("block_active")
+  );
+  const unActiv = [...containerElemAll].filter(
+    (el) => !el.classList.contains("block_active")
+  );
+  active.forEach((element) => {
+    element.classList.remove("block_active");
+  });
+  unActiv.forEach((element) => {
+    element.classList.add("block_active");
   });
 }

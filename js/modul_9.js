@@ -1,26 +1,26 @@
 const date = new Date();
-console.log("Date: ", date);
+console.log("~ date", date);
 
-// Возвращает день месяца от 1 до 31
-console.log("getUTCDate(): ", date.getUTCDate());
+date.toString();
+// "Sat Mar 16 2030 14:25:00 GMT+0200 (Eastern European Standard Time)"
 
-// Возвращает день недели от 0 до 6
-console.log("getUTCDay(): ", date.getUTCDay());
+date.toTimeString();
+// "14:25:00 GMT+0200 (Eastern European Standard Time)"
 
-// Возвращает месяц от 0 до 11
-console.log("getUTCMonth(): ", date.getUTCMonth());
+date.toLocaleTimeString();
+// "2:25:00 PM"
 
-// Возвращает год из 4 цифр
-console.log("getUTCFullYear(): ", date.getUTCFullYear());
+date.toUTCString();
+// "Sat, 16 Mar 2030 12:25:00 GMT"
 
-// Возвращает час
-console.log("getUTCHours(): ", date.getUTCHours());
+date.toDateString();
+// "Sat Mar 16 2030"
 
-// Возвращает минуты
-console.log("getUTCMinutes(): ", date.getUTCMinutes());
+date.toISOString();
+// "2030-03-16T12:25:00.000Z"
 
-// Возвращает секунды
-console.log("getUTCSeconds(): ", date.getUTCSeconds());
+date.toLocaleString();
+// "3/16/2030, 2:25:00 PM"
 
-// Возвращает миллисекунды
-console.log("getUTCMilliseconds(): ", date.getUTCMilliseconds());
+date.getTime();
+// 1899894300000

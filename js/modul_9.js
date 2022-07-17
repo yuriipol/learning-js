@@ -98,11 +98,18 @@
 // );
 //? 2 промиса через fetch
 
-const beersPromise = fetch("https://api.sampleapis.com/beers/ale");
-const winesPromise = fetch("https://api.sampleapis.com/wines/reds");
+// const beersPromise = fetch("https://api.sampleapis.com/beers/ale");
+// const winesPromise = fetch("https://api.sampleapis.com/wines/reds");
 
-Promise.all([beersPromise, winesPromise]).then((data) => {
-  return Promise.all(data.map((el) => el.json())).then((finalData) =>
-    console.log(finalData)
-  );
-});
+// Promise.all([beersPromise, winesPromise]).then((data) => {
+//   return Promise.all(data.map((el) => el.json())).then((finalData) =>
+//     console.log(finalData)
+//   );
+// });
+
+const array = [{ name: "English", population: 345 }];
+
+const getname = (array) => {
+  return array.map((el) => el.name);
+};
+console.log(getname(array));

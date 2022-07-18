@@ -106,10 +106,29 @@
 //     console.log(finalData)
 //   );
 // });
+/*
+ *************************************************************************
+ */
+// const array = [{ name: "English", population: 345 }];
 
-const array = [{ name: "English", population: 345 }];
+// const getname = (array) => {
+//   return array.map((el) => el.name);
+// };
+// console.log(getname(array));
+// Change this number to fetch different post
+const fetchUsers = async () => {
+  const baseUrl = "https://jsonplaceholder.typicode.com";
+  const userIds = [1, 2, 3];
 
-const getname = (array) => {
-  return array.map((el) => el.name);
+  // 1. Создаём массив промисов
+  const arrayOfPromises = userIds.map(async (userId) => {
+    const response = await fetch(`${baseUrl}/users/${userId}`);
+    return response.json();
+  });
+
+  // 2. Запускаем все промисы параллельно и ждем их завершения
+  const users = await Promise.all(arrayOfPromises);
+  console.log(users);
 };
-console.log(getname(array));
+
+fetchUsers();
